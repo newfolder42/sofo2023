@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Moving Images</title>
+	<style>
+		.container {
+			position: relative;
+			height: 500px;
+			width: 500px;
+			border: 1px solid black;
+			margin: auto;
+			overflow: hidden;
+		}
+		.image {
+			position: absolute;
+			height: 50px;
+			width: 50px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img src="https://picsum.photos/50" class="image" id="img1">
+		<img src="https://picsum.photos/50" class="image" id="img2">
+		<img src="https://picsum.photos/50" class="image" id="img3">
+		<img src="https://picsum.photos/50" class="image" id="img4">
+		<img src="https://picsum.photos/50" class="image" id="img5">
+	</div>
+
+	<script>
+		var container = document.querySelector(".container");
+		var images = document.querySelectorAll(".image");
+
+		var timerId = setInterval(moveImages, 1000);
+
+		function moveImages() {
+			images.forEach(function(image) {
+				var newX = Math.floor(Math.random() * (container.offsetWidth - image.offsetWidth));
+				var newY = Math.floor(Math.random() * (container.offsetHeight - image.offsetHeight));
+				image.style.left = newX + "px";
+				image.style.top = newY + "px";
+			});
+		}
+
+		images.forEach(function(image) {
+			image.addEventListener("click", function() {
+				alert("You clicked on image " + image.id);
+			});
+		});
+	</script>
+</body>
+</html>
